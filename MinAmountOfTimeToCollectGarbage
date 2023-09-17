@@ -1,0 +1,29 @@
+class Solution:
+    def garbageCollection(self, garbage: List[str], travel: List[int]) -> int:
+        x = "".join(garbage)
+        p, m, g = x.count("P"), x.count("M"), x.count("G")
+        pfinal, mfinal, gfinal = 0, 0, 0
+        length = len(travel)
+        if p != 0:
+            for i in range(length, -1, -1):
+                if garbage[i].__contains__("P"):
+                    pfinal = i
+                    break
+        if m != 0:
+            for i in range(length, -1, -1):
+                if garbage[i].__contains__("M"):
+                    mfinal = i
+                    break
+        if g != 0:
+            for i in range(length, -1, -1):
+                if garbage[i].__contains__("G"):
+                    gfinal = i
+                    break
+        m += sum(travel[0:mfinal])
+        p += sum(travel[0:pfinal])
+        g += sum(travel[0:gfinal])
+        x = None
+        return m + p + g
+
+        
+
